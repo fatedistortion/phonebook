@@ -1,0 +1,25 @@
+AppBundle\Entity\Contact:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\ContactRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        firstName:
+            type: string
+            length: 255
+            column: last_name
+        lastName:
+            type: string
+            length: 255
+            column: first_name
+
+    oneToMany:
+        phoneNumbers:
+            targetEntity: PhoneNumber
+            mappedBy: contact
+    lifecycleCallbacks: {  }

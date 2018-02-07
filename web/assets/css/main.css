@@ -1,0 +1,13 @@
+.navbar-custom-menu {
+    display: none;
+}
+
+.main-footer {
+    position: relative;
+    margin: 0;
+    border: 0;
+    color: #FFF;
+    background-color: #4B0082;
+    text-align: right;
+    padding: 5px 15px;
+}
