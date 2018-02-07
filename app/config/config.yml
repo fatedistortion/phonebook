@@ -76,22 +76,55 @@ easy_admin:
               - '/assets/css/main.css'
         menu:
             - { entity: 'Contact', label: 'Contacts', icon: 'user' }
+            - { entity: 'PhoneNumber', label: 'Phone Numbers', icon: 'phone' }
             - { entity: 'PhoneType', label: 'Types', icon: 'wrench' }
+        templates:
+            layout: '@App/layout.html.twig'
     entities:
         Contact:
             class: AppBundle\Entity\Contact
             list:
                 title: "Contact List"
                 sort: ['lastName', 'ASC']
-                fields: ['firstName', 'lastName', 'number', 'phoneType']
-            form:
+                fields: ['firstName', 'lastName']
+                actions: ['newPhone']
+            show:
+                title: "%%entity_label%%"
+                fields: ['firstName', 'lastName', 'phoneNumbers']
+            edit:
+                title: "Edit %%entity_label%%"
                 fields:
                     - { property: 'firstName', type_options: { required: true } }
                     - { property: 'lastName', type_options: { required: true } }
+                    - { property: 'phoneNumbers' }
+            new:
+                title: "Create New %%entity_label%%"
+                fields:
+                    - { property: 'firstName', type_options: { required: true } }
+                    - { property: 'lastName', type_options: { required: true } }
+        PhoneNumber:
+            class: AppBundle\Entity\PhoneNumber
+            disabled_actions: ['search']
+            list:
+                title: "Phone Number List"
+                fields: ['contact', 'number', 'phoneType']
+            show:
+                title: "Phone Number"
+                fields: ['contact', 'number', 'phoneType']
+            new:
+                title: "New Phone Number"
+                fields:
+                    - { property: 'contact', type_options: { required: true } }
+                    - { property: 'number', type_options: { required: true } }
+                    - { property: 'phoneType', type_options: { required: true } }
+            edit:
+                title: "Edit Phone Number"
+                fields:
                     - { property: 'number', type_options: { required: true } }
                     - { property: 'phoneType', type_options: { required: true } }
         PhoneType:
             class: AppBundle\Entity\PhoneType
+            disabled_actions: ['show']
             list:
                 title: "Phone Types"
                 sort: ['description', 'ASC']

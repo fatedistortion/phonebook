@@ -23,20 +23,22 @@ class Contact
     private $lastName;
 
     /**
-     * @var string
+     * @var \Doctrine\Common\Collections\Collection
      */
-    private $number;
+    private $phoneNumbers;
 
     /**
-     * @var integer
+     * Constructor
      */
-    private $phoneTypeId;
+    public function __construct()
+    {
+        $this->phoneNumbers = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
-    /**
-     * @var \AppBundle\Entity\PhoneType
-     */
-    private $phoneType;
-
+    public function __toString()
+    {
+        return $this->getFirstName().' '.$this->getLastName();
+    }
 
     /**
      * Get id
@@ -97,75 +99,36 @@ class Contact
     }
 
     /**
-     * Set number
+     * Add phoneNumber
      *
-     * @param string $number
+     * @param \AppBundle\Entity\PhoneNumber $phoneNumber
      *
      * @return Contact
      */
-    public function setNumber($number)
+    public function addPhoneNumber(\AppBundle\Entity\PhoneNumber $phoneNumber)
     {
-        $this->number = $number;
+        $this->phoneNumbers[] = $phoneNumber;
 
         return $this;
     }
 
     /**
-     * Get number
+     * Remove phoneNumber
      *
-     * @return string
+     * @param \AppBundle\Entity\PhoneNumber $phoneNumber
      */
-    public function getNumber()
+    public function removePhoneNumber(\AppBundle\Entity\PhoneNumber $phoneNumber)
     {
-        return $this->number;
+        $this->phoneNumbers->removeElement($phoneNumber);
     }
 
     /**
-     * Set phoneTypeId
+     * Get phoneNumbers
      *
-     * @param integer $phoneTypeId
-     *
-     * @return Contact
+     * @return \Doctrine\Common\Collections\Collection
      */
-    public function setPhoneTypeId($phoneTypeId)
+    public function getPhoneNumbers()
     {
-        $this->phoneTypeId = $phoneTypeId;
-
-        return $this;
-    }
-
-    /**
-     * Get phoneTypeId
-     *
-     * @return integer
-     */
-    public function getPhoneTypeId()
-    {
-        return $this->phoneTypeId;
-    }
-
-    /**
-     * Set phoneType
-     *
-     * @param \AppBundle\Entity\PhoneType $phoneType
-     *
-     * @return Contact
-     */
-    public function setPhoneType(\AppBundle\Entity\PhoneType $phoneType = null)
-    {
-        $this->phoneType = $phoneType;
-
-        return $this;
-    }
-
-    /**
-     * Get phoneType
-     *
-     * @return \AppBundle\Entity\PhoneType
-     */
-    public function getPhoneType()
-    {
-        return $this->phoneType;
+        return $this->phoneNumbers;
     }
 }
-

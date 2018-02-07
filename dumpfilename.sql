@@ -16,14 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Current Database: `phonebook`
---
-
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `phonebook` /*!40100 DEFAULT CHARACTER SET utf8 */;
-
-USE `phonebook`;
-
---
 -- Table structure for table `contact`
 --
 
@@ -32,14 +24,10 @@ DROP TABLE IF EXISTS `contact`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `contact` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `phone_type_id` int(11) NOT NULL,
   `last_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `first_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `number` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `IDX_4C62E638550E00A1` (`phone_type_id`),
-  CONSTRAINT `FK_4C62E638550E00A1` FOREIGN KEY (`phone_type_id`) REFERENCES `phone_type` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -48,8 +36,38 @@ CREATE TABLE `contact` (
 
 LOCK TABLES `contact` WRITE;
 /*!40000 ALTER TABLE `contact` DISABLE KEYS */;
-INSERT INTO `contact` VALUES (2,4,'Carlos','Hernandez','4421796098'),(3,1,'Tifa','Lockheart','2189271211'),(4,5,'Barret','Wallace','4123123312'),(5,2,'Cid','Highwind','5341343312'),(6,1,'Red','XIII','5434312211');
+INSERT INTO `contact` VALUES (6,'Carlos','Hernandez'),(7,'Cloud','Strife'),(8,'Barret','Wallace'),(9,'Tifa','Lockheart'),(10,'Red','XIII');
 /*!40000 ALTER TABLE `contact` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `phone_number`
+--
+
+DROP TABLE IF EXISTS `phone_number`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `phone_number` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `contact_id` int(11) NOT NULL,
+  `phone_type_id` int(11) NOT NULL,
+  `number` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_6B01BC5BE7A1254A` (`contact_id`),
+  KEY `IDX_6B01BC5B550E00A1` (`phone_type_id`),
+  CONSTRAINT `FK_6B01BC5B550E00A1` FOREIGN KEY (`phone_type_id`) REFERENCES `phone_type` (`id`),
+  CONSTRAINT `FK_6B01BC5BE7A1254A` FOREIGN KEY (`contact_id`) REFERENCES `contact` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `phone_number`
+--
+
+LOCK TABLES `phone_number` WRITE;
+/*!40000 ALTER TABLE `phone_number` DISABLE KEYS */;
+INSERT INTO `phone_number` VALUES (1,6,7,'6679651193'),(2,6,6,'7764537973'),(3,7,6,'5162824128'),(4,7,6,'8049437007'),(5,8,6,'9500500451'),(6,8,8,'8351028466'),(7,9,6,'5610383525'),(8,9,6,'7108616808'),(9,10,6,'5239097831'),(10,10,6,'3558355159'),(11,10,5,'2369222197');
+/*!40000 ALTER TABLE `phone_number` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -63,7 +81,7 @@ CREATE TABLE `phone_type` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -72,7 +90,7 @@ CREATE TABLE `phone_type` (
 
 LOCK TABLES `phone_type` WRITE;
 /*!40000 ALTER TABLE `phone_type` DISABLE KEYS */;
-INSERT INTO `phone_type` VALUES (1,'Home'),(2,'Work'),(4,'Cellular'),(5,'Other');
+INSERT INTO `phone_type` VALUES (5,'Home'),(6,'Work'),(7,'Cellular'),(8,'Other');
 /*!40000 ALTER TABLE `phone_type` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -85,4 +103,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-02-06 23:25:55
+-- Dump completed on 2018-02-07 13:17:36
