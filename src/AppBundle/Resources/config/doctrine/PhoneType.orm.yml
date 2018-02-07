@@ -1,0 +1,19 @@
+AppBundle\Entity\PhoneType:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\PhoneTypeRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        description:
+            type: string
+            length: 255
+    oneToMany:
+        contacts:
+            targetEntity: Contact
+            mappedBy: phone_type
+    lifecycleCallbacks: {  }
