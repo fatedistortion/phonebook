@@ -17,7 +17,6 @@ class PhoneType
      */
     private $description;
 
-
     public function __toString()
     {
         return $this->getDescription();

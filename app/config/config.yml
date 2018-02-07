@@ -72,37 +72,32 @@ easy_admin:
         brand_color: '#4B0082'
         assets:
             favicon: '/assets/favicon.png'
+            css:
+              - '/assets/css/main.css'
         menu:
             - { entity: 'Contact', label: 'Contacts', icon: 'user' }
-            - { entity: 'PhoneNumber', label: 'Phones', icon: 'phone' }
-            - { entity: 'PhoneType', label: 'Types', icon: 'plus' }
+            - { entity: 'PhoneType', label: 'Types', icon: 'wrench' }
     entities:
         Contact:
             class: AppBundle\Entity\Contact
             list:
                 title: "Contact List"
                 sort: ['lastName', 'ASC']
-                fields: ['firstName','lastName','phoneNumbers']
-            form:
-                fields: ['firstName','lastName']
-            edit:
-                fields: ['firstName','lastName', 'phoneNumbers']
-        PhoneNumber:
-            class: AppBundle\Entity\PhoneNumber
-            label: 'Phone'
-            list:
-                title: "Phone List"
-                sort: ['contact', 'DESC']
-                fields: ['contact', 'number', 'phone_type']
+                fields: ['firstName', 'lastName', 'number', 'phoneType']
             form:
                 fields:
+                    - { property: 'firstName', type_options: { required: true } }
+                    - { property: 'lastName', type_options: { required: true } }
                     - { property: 'number', type_options: { required: true } }
-                    - { property: 'phone_type', type_options: { required: true } }
-                    - { property: 'contact', type_options: { required: true } }
+                    - { property: 'phoneType', type_options: { required: true } }
         PhoneType:
             class: AppBundle\Entity\PhoneType
             list:
                 title: "Phone Types"
                 sort: ['description', 'ASC']
                 fields: ['description']
-                actions: ['-search']
+                actions: ['-new', '-delete', '-search']
+            show:
+                actions: ['-delete']
+            edit:
+                actions: ['-delete']
