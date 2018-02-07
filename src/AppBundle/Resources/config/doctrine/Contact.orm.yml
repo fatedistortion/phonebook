@@ -9,25 +9,17 @@ AppBundle\Entity\Contact:
             generator:
                 strategy: AUTO
     fields:
-        lastName:
-            type: string
-            length: 255
-            column: last_name
         firstName:
             type: string
             length: 255
-            column: first_name
-        number:
+            column: last_name
+        lastName:
             type: string
-            length: 50
-        phoneTypeId:
-            type: integer
-            column: phone_type_id
-    manyToOne:
-        phone_type:
-            targetEntity: PhoneType
-            inversedBy: contacts
-            joinColumn:
-                name: phone_type_id
-                referencedColumnName: id
+            length: 255
+            column: first_name
+
+    oneToMany:
+        phoneNumbers:
+            targetEntity: PhoneNumber
+            mappedBy: contact
     lifecycleCallbacks: {  }

@@ -12,8 +12,4 @@ AppBundle\Entity\PhoneType:
         description:
             type: string
             length: 255
-    oneToMany:
-        contacts:
-            targetEntity: Contact
-            mappedBy: phone_type
     lifecycleCallbacks: {  }

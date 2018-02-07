@@ -17,18 +17,6 @@ class PhoneType
      */
     private $description;
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $contacts;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->contacts = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     public function __toString()
     {
@@ -67,39 +55,5 @@ class PhoneType
     public function getDescription()
     {
         return $this->description;
-    }
-
-    /**
-     * Add contact
-     *
-     * @param \AppBundle\Entity\Contact $contact
-     *
-     * @return PhoneType
-     */
-    public function addContact(\AppBundle\Entity\Contact $contact)
-    {
-        $this->contacts[] = $contact;
-
-        return $this;
-    }
-
-    /**
-     * Remove contact
-     *
-     * @param \AppBundle\Entity\Contact $contact
-     */
-    public function removeContact(\AppBundle\Entity\Contact $contact)
-    {
-        $this->contacts->removeElement($contact);
-    }
-
-    /**
-     * Get contacts
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getContacts()
-    {
-        return $this->contacts;
     }
 }

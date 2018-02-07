@@ -15,27 +15,25 @@ class Contact
     /**
      * @var string
      */
-    private $lastName;
-
-    /**
-     * @var string
-     */
     private $firstName;
 
     /**
      * @var string
      */
-    private $number;
+    private $lastName;
 
     /**
-     * @var integer
+     * @var \Doctrine\Common\Collections\Collection
      */
-    private $phoneTypeId;
+    private $phoneNumbers;
 
     /**
-     * @var \AppBundle\Entity\PhoneType
+     * Constructor
      */
-    private $phone_type;
+    public function __construct()
+    {
+        $this->phoneNumbers = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     public function __toString()
     {
@@ -50,30 +48,6 @@ class Contact
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set lastName
-     *
-     * @param string $lastName
-     *
-     * @return Contact
-     */
-    public function setLastName($lastName)
-    {
-        $this->lastName = $lastName;
-
-        return $this;
-    }
-
-    /**
-     * Get lastName
-     *
-     * @return string
-     */
-    public function getLastName()
-    {
-        return $this->lastName;
     }
 
     /**
@@ -101,74 +75,60 @@ class Contact
     }
 
     /**
-     * Set number
+     * Set lastName
      *
-     * @param string $number
+     * @param string $lastName
      *
      * @return Contact
      */
-    public function setNumber($number)
+    public function setLastName($lastName)
     {
-        $this->number = $number;
+        $this->lastName = $lastName;
 
         return $this;
     }
 
     /**
-     * Get number
+     * Get lastName
      *
      * @return string
      */
-    public function getNumber()
+    public function getLastName()
     {
-        return $this->number;
+        return $this->lastName;
     }
 
     /**
-     * Set phoneTypeId
+     * Add phoneNumber
      *
-     * @param integer $phoneTypeId
+     * @param \AppBundle\Entity\PhoneNumber $phoneNumber
      *
      * @return Contact
      */
-    public function setPhoneTypeId($phoneTypeId)
+    public function addPhoneNumber(\AppBundle\Entity\PhoneNumber $phoneNumber)
     {
-        $this->phoneTypeId = $phoneTypeId;
+        $this->phoneNumbers[] = $phoneNumber;
 
         return $this;
     }
 
     /**
-     * Get phoneTypeId
+     * Remove phoneNumber
      *
-     * @return integer
+     * @param \AppBundle\Entity\PhoneNumber $phoneNumber
      */
-    public function getPhoneTypeId()
+    public function removePhoneNumber(\AppBundle\Entity\PhoneNumber $phoneNumber)
     {
-        return $this->phoneTypeId;
+        $this->phoneNumbers->removeElement($phoneNumber);
     }
 
     /**
-     * Set phoneType
+     * Get phoneNumbers
      *
-     * @param \AppBundle\Entity\PhoneType $phoneType
-     *
-     * @return Contact
+     * @return \Doctrine\Common\Collections\Collection
      */
-    public function setPhoneType(\AppBundle\Entity\PhoneType $phoneType = null)
+    public function getPhoneNumbers()
     {
-        $this->phone_type = $phoneType;
-
-        return $this;
-    }
-
-    /**
-     * Get phoneType
-     *
-     * @return \AppBundle\Entity\PhoneType
-     */
-    public function getPhoneType()
-    {
-        return $this->phone_type;
+        return $this->phoneNumbers;
     }
 }
