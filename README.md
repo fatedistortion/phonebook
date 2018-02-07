@@ -1,5 +1,5 @@
 **Deployment Guide**
-*Note: Project was developed in Symfony 3.4 using Linux.*
+- *Note: Project was developed in Symfony 3.4 using Linux.*
 
 Initial requirements for running locally:
 - PHP >= 5.5.9
@@ -10,8 +10,8 @@ Initial requirements for running locally:
 ----------
 
 There are two ways for obtaining the project's code.
-**Option A** – Pulling code from github. (`git clone https://github.com/fatedistortion/phonebook.git`).
-**Option B** – Using code attached in zip file.
+- **Option A** – Pulling code from github. (`git clone https://github.com/fatedistortion/phonebook.git`).
+- **Option B** – Using code attached in zip file.
 
  1. Initialize database by running app/config/migrations/init.sql on the
     local MySQL DB.
@@ -25,5 +25,5 @@ There are two ways for obtaining the project's code.
 ----------
 
 **Troubleshooting**
-If any deployment issues arise, symfony requirements can be verified by running inside the project directory -> `php bin/symfony_requirements`.
-Make sure the database connection parameters are correct and match what the `init.sql` file has.
+- If any deployment issues arise, symfony requirements can be verified by running inside the project directory -> `php bin/symfony_requirements`.
+- Make sure the database connection parameters are correct and match what the `init.sql` file has.
